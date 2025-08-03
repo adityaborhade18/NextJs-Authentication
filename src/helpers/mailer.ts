@@ -23,15 +23,15 @@ export const sendEmail=async({email,emailType,userId}:any)=> {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'yourgmail@gmail.com',
-        pass: 'your_app_password'
+        user: process.env.EMAIL,
+        pass: process.env.APP_PASS,
       }
     });
 
     // Email options
     const mailOptions = {
-      from: 'yourgmail@gmail.com',
-      to: email,
+      from: process.env.EMAIL,
+      to: email ,
       subject: emailType==="VERIFY" ? "Verify your email" : "Reset your password",
       html:`<p>Click <a href='${process.env.DOMAIN}/verifyemail?token=${hashedToken}'>here</a> to ${ emailType==="VERIFY" ? "Verify your email" : "Reset your password"} or copy and paste the 
       the link below in your browser. <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}</p>`
