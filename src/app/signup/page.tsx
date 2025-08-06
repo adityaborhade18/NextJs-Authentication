@@ -23,7 +23,7 @@ const page = () => {
         setLoading(true);
        const data=await axios.post('/api/users/signup',user)
        console.log("data",data.data);
-       toast.success('Signup Successfull')
+       toast.success('Signup Successful')
        router.push('/login')
      }catch(error){
         console.log("error is from client signup page:" , error);
@@ -39,10 +39,12 @@ const page = () => {
   },[user])
 
   return (
-    <div>
+    <div className='flex justify-center items-center'>
+
         <h1>{loading ? "Processing..." : "Signup"}</h1>
         
         <label htmlFor="username">Username</label>
+        
         <input 
           type="text" 
           id='username'
@@ -67,7 +69,7 @@ const page = () => {
            />
 
            <button onClick={onSignup}>
-            {buttonDisable ? "cant signup" : "Signup"}
+            {buttonDisable ? "No Signup" : "Signup"}
            </button>
     </div>
     
